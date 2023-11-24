@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # This script displays to infinity and beyond indefinitely and I am invincible!!! when SIGTERM signal
-terminate() {
-	echo "I am invincible!!!"
-	exit 0
-}
-trap terminate SIGTERM
+trap 'echo "I am invincible!!!"' SIGTERM
 while true; do
         echo "To infinity and beyond"
         sleep 2
