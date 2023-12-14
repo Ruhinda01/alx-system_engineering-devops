@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# Bash script that configuers an Ubuntu server
-sudo sed -i -e 's/^127.0.0.1 l[[:space:]]\+localhost/127.0.0.2 localhost/g' /etc/hosts
-echo -e "8.8.8.8\tfacebook.com" | sudo tee -a /etc/hosts
