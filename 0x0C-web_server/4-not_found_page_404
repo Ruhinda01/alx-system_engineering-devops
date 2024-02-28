@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# install nginx web server
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+# Listening on port 80
+sudo ufw allow 'Nginx HTTP'
+
+#Backing up the default index.html
+mv /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bak
+
+# overwrite the content of index.html file
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Redirecting to another page
+string_to_add="listen 80 default_server;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/listen 80 default_server;/$string_to_add/" /etc/nginx/sites-available/default
+
+# Configuring the custom 404 page
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sudo sed -i "46i \
+	error_page 404 /custom_404.html;\n\
+	location = /custom_404.html {\n\
+	root /usr/share/nginx/html; \ninternal;\n}\n" /etc/nginx/sites-available/default
+
+# Restarting nginx
+sudo service nginx restart
