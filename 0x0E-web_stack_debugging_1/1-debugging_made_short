@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# fixes nginx to listen to port 80
-# creates or updates the symbolic link for default config
+# fixes nginx to listen to port 80 and kills it
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
+pkill -f "/usr/sbin/nginx"
