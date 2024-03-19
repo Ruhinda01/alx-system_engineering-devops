@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Configures the container so that Nginx is running as nginx user
+# must listen to port 8080
+pkill apache2
 sudo sed -i 's/^user .*;/user nginx;/' /etc/nginx/nginx.conf
 sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/' /etc/nginx/sites-available/default
 sudo chmod 644 /etc/nginx/nginx.conf
