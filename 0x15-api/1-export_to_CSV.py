@@ -4,11 +4,12 @@ Extend your python script to export data
 in the CSV format
 """
 
-if __name__ == '__main__':
-    import csv
-    import requests
-    import sys
+import csv
+import requests
+import sys
 
+
+if __name__ == '__main__':
     id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
     r1 = requests.get(url + "users/{}".format(id))
