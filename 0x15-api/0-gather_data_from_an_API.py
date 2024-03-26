@@ -13,16 +13,13 @@ if __name__ == '__main__':
     id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
     r1 = requests.get(url + "users/{}".format(id))
-    r2 = requests.get(url + "users/{}/todos".format(id))
+    params = {'userId': id}
+    r2 = requests.get(url + "todos", params=params)
     name = r1.json().get("name")
     todo_list = r2.json()
-    tasks = len(todo_list)
-    completed = 0
-    for task in todo_list:
-        if task.get('completed') is True:
-            completed += 1
+    completed = [t.get("title") for t in todo_list
+                 if t.get("completed") is True]
     print("Employee {} is done with tasks({}/{}):".format(
-        name, completed, tasks))
-    for done in todo_list:
-        if done.get('completed') is True:
-            print("\t {}".format(done.get('title')))
+        name, len(completed), len(todo_list)))
+    for task in completed:
+        print("\t {}".format(task))
