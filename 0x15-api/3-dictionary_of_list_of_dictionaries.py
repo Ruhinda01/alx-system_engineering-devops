@@ -23,5 +23,6 @@ if __name__ == '__main__':
                               "completed": task.get("completed"),
                               "username": uname})
         user_dict[user.get("id")] = full_list
+        full_list = []
     with open(file, "w") as f:
         json.dump(user_dict, f)
