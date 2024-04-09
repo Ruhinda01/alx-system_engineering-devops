@@ -15,16 +15,20 @@ def recurse(subreddit, hot_list=[], after=""):
         hot_list (list): list of hot articles
     """
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {"User-Agent": "Ruhinda"}
+    headers = {"User-Agent": "reddit/0.0.1"}
     params = {"after": after}
     response = requests.get(url, headers=headers, params=params,
                             allow_redirects=False)
-    if response.status_code == 404:
+    if response.status_code != 200:
         return None
-    results = response.json()
-    for post in results['data']['children']:
-        hot_list.append(post['data']['title'])
-    after = results['data']['after']
-    if after:
-        return recurse(subreddit, hot_list, after)
-    return hot_list
+    else:
+        results = response.json()
+        if len(results['data']['children']) == 0:
+            return hot_list
+        else:
+            for post in results['data']['children']:
+                hot_list.append(post['data']['title'])
+            after = results['data']['after']
+            if after:
+                return recurse(subreddit, hot_list, after)
+            return hot_list
