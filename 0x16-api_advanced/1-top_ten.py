@@ -12,8 +12,6 @@ def top_ten(subreddit):
     prints the titles of the first 10 hot posts
     Params:
         subreddit (str): subreddit name
-    Return:
-        None
     """
     url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
     headers = {"User-Agent": "Ruhinda"}
