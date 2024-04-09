@@ -21,9 +21,11 @@ def top_ten(subreddit):
 
     if response.status_code != 200:
         print('None')
-    posts = response.json()
-    if len(posts['data']['children']) == 0:
-        print('None')
-    for index, post in enumerate(posts['data']['children']):
-        if index < 10:
-            print(post['data']['title'])
+    else:
+        posts = response.json()
+        if len(posts['data']['children']) == 0:
+            print('None')
+        else:
+            for index, post in enumerate(posts['data']['children']):
+                if index < 10:
+                    print(post['data']['title'])
