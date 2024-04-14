@@ -1,6 +1,6 @@
 # 0x19. Postmortem: Web Stack Debugging 3
 
-![Debugging](/alx-system_engineering-devops/0x19-postmortem/debugging-we-bare-bears.gif)
+![Debugging](debugging-we-bare-bears.gif)
 
 The issue within this project was based off an ongoing Apache 500 internal server error. This is a Wordpress website running on a LAMP stack.
 
@@ -20,7 +20,7 @@ The issue within this project was based off an ongoing Apache 500 internal serve
 * 12:00 AM (EAT) - This debugging task was then pushed to myself to solve and get the website up and running.
 * 13:00 AM (EAT) - A typo was found in the `wp-settings.php` file and this mainly affected the functionality of the website. Through use of automation, I was able to fix the bug which finally made the website fully functional.
 
-![Finally](/alx-system_engineering-devops/0x19-postmortem/omg-hell.gif)
+![Finally](omg-hell.gif)
 
 ## Root Cause and Resolution
 
